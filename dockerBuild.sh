@@ -4,14 +4,6 @@
 GIT_TAG=$(git describe --exact-match --tags HEAD 2>/dev/null)
 VERSION="unknown"
 
-
-echo "----"
-for var in ${!TRAVIS_*}; do
-  echo "${var}=${!var}"
-done
-echo "TRAVIS=${TRAVIS}"
-echo "----"
-
 echo "Got tag:\"${GIT_TAG}\""
 if [ -z $GIT_TAG ]; then
   GIT_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
@@ -44,7 +36,6 @@ DTAG="premiereglobal/fs_exporter:${VERSION}"
 
 docker build . -t ${DTAG}
 
-
 echo "---------------------"
 echo "Created Tag ${DTAG}"
 echo "---------------------"
@@ -53,8 +44,8 @@ if [[ ${TRAVIS} && "${VERSION}" != "unknown" && -n $DOCKER_USERNAME && -n $DOCKE
   echo "Pushing docker image: ${DTAG}"
   docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   docker push ${DTAG}
-elif [[ ${TRAVIS} && -z $DOCKER_USERNAME ]]; then
-  echo "No Docker user set"
-elif [[ ${TRAVIS} && -z $DOCKER_PASSWORD ]]; then
-  echo "No Docker user set"
+#elif [[ ${TRAVIS} && -z $DOCKER_USERNAME ]]; then
+#  echo "No Docker user set"
+#elif [[ ${TRAVIS} && -z $DOCKER_PASSWORD ]]; then
+#  echo "No Docker user set"
 fi

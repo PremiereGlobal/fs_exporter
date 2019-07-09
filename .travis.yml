@@ -4,7 +4,7 @@ language: python
 services:
 - docker
 deploy:
-  provider: release
+  provider: releases
   api_key:
     secure: "qWya/GlEHFT3N43/0SShflGLlyHvijhqxFi6GGYudFs0eFNFoVV4I3tOfMrUbWQnWY0POo9oFVU+tGy2WaYiBHBX964272wsOlCC36pZnCX5FOy2o+8IRksoq+KuW/jvmkAx1ZXf6mB08WtCe5A8duxoJsh80hCvySc1RExqdQovV5RM8GOSegYWssqJ/+KnNgbIQ0vvX/DtMC1/YGqXOijNgHreBi1moRc4pVPW8+h5hBFi8MCOguYASsbLk0NeW8fU7GP6asrzI1En289shCgLxmCDhFQbr+ofXk786/+AjHg89HD1SIHq9xLguERHBKnc2RzcEliu4Y/ZdTlCctPG8icwmWIVHYAnO3bDLup+WpACW1BuzbthXGrT+vjXfu/waAKSoir/ZFcGQtvrEuNL6XcToX3ZcuI/3sCsLOnGs3taqKCBEUoSBm2J2wPQRyLrbFCAON3dPe1iA6h1Lp/V7TGOIRLVJKWP6v3sWbuGQ+99WjvEeGmA9lFjIVWpRhsennCjCHiCTYhJi6LK00Ot/e60j1ubpQ+82faWW+joQXORksCXJ28BkgcbCwTOjeobRF+5HE7Pp6sj25fg080N4Hm1nGHK3RcGj9PxSWbEjwKbTDf8J20D8Ve5ozHa4YV+ABLIdPU6lsiajvGIpeCQkfT50TUaxYaIzzfvueQ="
   on:
