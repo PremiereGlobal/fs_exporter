@@ -1,4 +1,7 @@
 # fs_exporter
+[![Build][Build-Status-Image]][Build-Status-Url]
+
+https://travis-ci.org/PremiereGlobal/fs_exporter#
 
 This is a prometheus exporter for freeswitch.
 
@@ -21,3 +24,6 @@ Options for metrics are:
 * disable-channels-total - disable polling the current freeswitch total channels.
 * disable-channels-current - disable polling the current number of channels from freeswitch.
 * enable-events-total - enable watching all events from freeswitch.  This defaults to disabled since it can cause higher load on certain boxes, enable it if useful.
+
+[Build-Status-Url]: https://travis-ci.org/PremiereGlobal/fs_exporter
+[Build-Status-Image]: https://travis-ci.org/PremiereGlobal/fs_exporter.svg?branch=master

@@ -9,6 +9,7 @@ echo "----"
 for var in ${!TRAVIS_*}; do
   echo "${var}=${!var}"
 done
+echo "TRAVIS=${TRAVIS}"
 echo "----"
 
 echo "Got tag:\"${GIT_TAG}\""
@@ -49,6 +50,11 @@ echo "Created Tag ${DTAG}"
 echo "---------------------"
 
 if [[ ${TRAVIS} && "${VERSION}" != "unknown" && -n $DOCKER_USERNAME && -n $DOCKER_PASSWORD ]]; then
+  echo "Pushing docker image: ${DTAG}"
   docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   docker push ${DTAG}
+elif [[ ${TRAVIS} && -z $DOCKER_USERNAME ]]; then
+  echo "No Docker user set"
+elif [[ ${TRAVIS} && -z $DOCKER_PASSWORD ]]; then
+  echo "No Docker user set"
 fi
