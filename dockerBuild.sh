@@ -6,6 +6,10 @@ VERSION="unknown"
 
 echo "Got tag:\"${GIT_TAG}\""
 
+echo "----"
+git branch
+echo "----"
+
 if [ -z $GIT_TAG ]; then
   GIT_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
   echo "Got branch:\"${GIT_BRANCH}\""
