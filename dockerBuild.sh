@@ -4,16 +4,21 @@
 GIT_TAG=$(git describe --exact-match --tags HEAD 2>/dev/null)
 VERSION="unknown"
 
+
+echo "----"
+for var in ${!TRAVIS_*}; do
+  echo "${var}=${!var}"
+done
+echo "----"
+
 echo "Got tag:\"${GIT_TAG}\""
-
-echo "----"
-git branch
-echo "----"
-
 if [ -z $GIT_TAG ]; then
   GIT_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
   echo "Got branch:\"${GIT_BRANCH}\""
   if [ "$GIT_BRANCH" == "master" ]; then 
+    VERSION="latest"
+  fi
+  if [ "$TRAVIS_BRANCH" == "master" ] ; then
     VERSION="latest"
   fi
 else
