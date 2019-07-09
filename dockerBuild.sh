@@ -39,7 +39,7 @@ echo "---------------------"
 echo "Created Tag ${DTAG}"
 echo "---------------------"
 
-if [[ ${TRAVIS} && "${TRAVIS_BRANCH}" == "master" && -n $DOCKER_USERNAME && -n $DOCKER_PASSWORD ]]; then
+if [[ ${TRAVIS} && "${VERSION}" != "unknown" && -n $DOCKER_USERNAME && -n $DOCKER_PASSWORD ]]; then
   docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   docker push ${DTAG}
 fi
