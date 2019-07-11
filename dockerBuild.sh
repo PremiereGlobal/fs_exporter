@@ -24,7 +24,7 @@ echo "---------------------"
 echo "Building FS_EXPORTER"
 echo "---------------------"
 
-docker run --rm -e GO111MODULE=on -e HOME=/tmp -u $(id -u ${USER}):$(id -g ${USER}) -v "$PWD":/go/fse -w /go/fse golang:1.12.5 \
+docker run --rm -e VERSION=${VERSION} -e GO111MODULE=on -e HOME=/tmp -u $(id -u ${USER}):$(id -g ${USER}) -v "$PWD":/go/fse -w /go/fse golang:1.12.5 \
 ./build.sh
 
 echo ""

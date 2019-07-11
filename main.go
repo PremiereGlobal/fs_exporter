@@ -3,6 +3,7 @@ package main // import "github.com/PremiereGlobal/fs_exporter"
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -19,6 +20,8 @@ import (
 	"github.com/spf13/viper"
 )
 
+var version string
+
 func main() {
 	slog := stimlog.GetLogger()
 	config := viper.New()
@@ -26,11 +29,19 @@ func main() {
 	config.AutomaticEnv()
 	config.SetEnvKeyReplacer(strings.NewReplacer("-", "_"))
 
+	if version == "" || version == "lastest" {
+		version = "unknown"
+	}
+
 	var cmd = &cobra.Command{
 		Use:   "fs_exporter",
 		Short: "launch freeswitch exporter service",
 		Long:  "launch freeswitch exporter service",
 		Run: func(cmd *cobra.Command, args []string) {
+			if config.GetBool("version") {
+				fmt.Printf("%s\n", version)
+				os.Exit(0)
+			}
 
 			var ll stimlog.Level
 			switch strings.ToLower(config.GetString("loglevel")) {
@@ -86,6 +97,9 @@ func main() {
 
 	cmd.PersistentFlags().Bool("enable-events-total", false, "Enables counting of all freeswitch events freeswitch_events_total stats")
 	config.BindPFlag("enable-events-total", cmd.PersistentFlags().Lookup("enable-events-total"))
+
+	cmd.PersistentFlags().Bool("version", false, "prints the version the exits")
+	config.BindPFlag("version", cmd.PersistentFlags().Lookup("version"))
 
 	err := cmd.Execute()
 	if err != nil {
